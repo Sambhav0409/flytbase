@@ -10,7 +10,7 @@ The system is built on a modular architecture separating data modeling (`models.
 ## 2. Scalability Discussion (Handling 10,000+ Drones)
 The current $O(N \cdot M)$ approach (checking the primary drone against every traffic drone) works for simulation but will fail at the scale of 10,000 drones.
 
-[cite_start]To scale this to a commercial level[cite: 45, 46], the following architectural changes are required:
+To scale this to a commercial level, the following architectural changes are required:
 
 1.  **Spatial Indexing (R-Trees):** Instead of iterating through all drones, we would use a dynamic spatial index like an R-Tree or a Quadtree (for 2D) / Octree (for 3D). This allows us to query only drones within the relevant bounding box of the primary mission, reducing complexity to logarithmic time $O(\log N)$.
 2.  **Sharding & Distributed Computing:** The airspace should be sharded geographically (e.g., Grid Cells). A distributed database (like Cassandra or Geo-Redis) would handle state. A drone in "Sector A" is only checked against other drones in "Sector A".
@@ -18,7 +18,7 @@ The current $O(N \cdot M)$ approach (checking the primary drone against every tr
 4.  **Temporal Bucketing:** Store flight plans in time buckets (e.g., 1-minute windows). A mission planning for 10:00 AM only queries the "10:00 AM" bucket, ignoring the thousands of flights happening at 2:00 PM.
 
 ## 3. Effective Use of AI
-[cite_start]AI tools (Large Language Models) were utilized to expedite the boilerplate generation for this project[cite: 8].
+AI tools (Large Language Models) were utilized to expedite the boilerplate generation for this project[cite: 8].
 * **Acceleration:** AI generated the initial `matplotlib` 3D animation boilerplate, which is notoriously verbose.
 * **Validation:** While AI suggested the code, I manually verified the physics interpolation logic in `utils.py` to ensure the math accurately represented constant velocity travel, as AI sometimes hallucinates vector math syntax.
 * **Refinement:** The AI initially suggested checking only waypoints for collisions. I refined this to checking interpolated trajectory points to catch "mid-segment" collisions.
