@@ -18,7 +18,7 @@ To scale this to a commercial level, the following architectural changes are req
 4.  **Temporal Bucketing:** Store flight plans in time buckets (e.g., 1-minute windows). A mission planning for 10:00 AM only queries the "10:00 AM" bucket, ignoring the thousands of flights happening at 2:00 PM.
 
 ## 3. Effective Use of AI
-AI tools (Large Language Models) were utilized to expedite the boilerplate generation for this project[cite: 8].
+AI tools (Large Language Models) were utilized to expedite the boilerplate generation for this project.
 * **Acceleration:** AI generated the initial `matplotlib` 3D animation boilerplate, which is notoriously verbose.
 * **Validation:** While AI suggested the code, I manually verified the physics interpolation logic in `utils.py` to ensure the math accurately represented constant velocity travel, as AI sometimes hallucinates vector math syntax.
 * **Refinement:** The AI initially suggested checking only waypoints for collisions. I refined this to checking interpolated trajectory points to catch "mid-segment" collisions.
